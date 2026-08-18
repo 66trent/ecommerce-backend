@@ -16,12 +16,12 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
 
     return {
       ...dbConfig,
-      autoLoadEntities: true,
+      autoLoadEntities: true, //tu load cac entities
       synchronize: false,
       logging: isDev ? ['error', 'warn', 'query'] : ['error'],
-      migrationsRun: false,
-      retryAttempts: 5,
-      retryDelay: 3000,
+      migrationsRun: false, //k tu dong chay migration
+      retryAttempts: 5, //thu lai ket noi 5 lan khi that bai
+      retryDelay: 3000, //khoang cach la 3s
       namingStrategy: new SnakeNamingStrategy(),
     };
   }
