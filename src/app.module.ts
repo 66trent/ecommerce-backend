@@ -14,6 +14,7 @@ import { UserModule } from './app/user/user.module';
 import { AuthModule } from './app/auth/auth.module';
 import { AddressModule } from './app/address/address.module';
 import { CategoryModule } from './app/category/category.module';
+import { ProductModule } from './app/product/product.module';
 
 const envFile =
   process.env.NODE_ENV === 'production'
@@ -38,6 +39,7 @@ const envFile =
     AuthModule,
     AddressModule,
     CategoryModule,
+    ProductModule,
   ],
   providers: [
     {
