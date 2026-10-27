@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Query,
-  Req,
-} from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus, Req } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -14,7 +7,6 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
 import { SessionAuthService } from './session-auth/session-auth.service';
 import { User } from '../user/entities/user.entity';
@@ -26,7 +18,6 @@ import { ResEx } from 'src/swaggers/response-examples';
 @Controller('auth')
 export class AuthController {
   constructor(
-    private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly sessionAuth: SessionAuthService,
   ) {}
@@ -48,25 +39,6 @@ export class AuthController {
         expiresAt: ctx.session.expiresAt,
       },
     };
-  }
-
-  // Xác minh Email
-  @Get('verify-email')
-  @ApiOperation({
-    summary: 'Xác minh email qua token (query)',
-    operationId: 'auth_verify_email',
-  })
-  @ApiOkResponse({
-    description: 'Ví dụ phản hồi',
-    schema: { example: ResEx.auth.verifyEmail },
-  })
-  async verifyEmail(
-    @Query('token')
-    token: string,
-    @Query('email')
-    email: string,
-  ) {
-    return this.authService.verifyEmailCustom(token, email);
   }
 
   // Lấy user hiện tại
